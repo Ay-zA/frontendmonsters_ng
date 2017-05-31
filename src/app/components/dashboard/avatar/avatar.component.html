@@ -1,0 +1,10 @@
+<div class="mask" *ngIf="isOpen" (click)="onMaskClick()"></div>
+<div class="avatar material level-1" [ngClass]="{hover: isHover, open:isOpen}" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" (click)="onClick()">
+  <p class="username">{{ user.name | nameToAvatar: showDetail }}</p>
+  <span *ngIf="showDetail" class="level">Level {{user.level}}</span>
+  <ul *ngIf="isOpen" class="account-nav">
+    <li><a [routerLink]="['/dashboard/account']">My account</a></li>
+    <li><a href="">Help</a></li>
+    <li><a (click)="signout()" href="">Sign out</a></li>
+  </ul>
+</div>

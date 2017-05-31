@@ -1,0 +1,4 @@
+<div [ngClass]="{fadeIn: fadeIn === true}"  *ngIf="notification" class="material level-1 notification {{typeClass[notification.type]}}">
+  <span class="title">{{notification.title}}</span>
+  <span class="message">{{notification.message}}</span>
+</div>

@@ -1,0 +1,21 @@
+<form class="auth-form" [ngClass]="{open: isOpen}" method="post">
+  <div class="close-panel" *ngIf="!isOpen">
+    <h1 class="logo">SIGN UP</h1>
+  </div>
+
+  <div class="open-panel" *ngIf="isOpen">
+    <header>
+      <h1 class="form-header">SIGN UP</h1>
+    </header>
+    <div class="form-inputs">
+      <p class="form-error">{{error}}</p>
+      <input name="email" class="hg-input" type="text" [(ngModel)]="user.email" placeholder="EMAIL">
+      <input name="name" class="hg-input" type="text" [(ngModel)]="user.name" placeholder="NAME">
+      <input name="password" class="hg-input" type="password" [(ngModel)]="user.password" placeholder="PASSWORD">
+    </div>
+    <div class="actions">
+      <button class="btn-google flat" type="button">Google+</button>
+      <button class="flat" type="button" (click)="register()">Sign Up</button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,8 @@
+<header>
+  <h1 class="title">Welcome</h1>
+  <span class="subtitle">Keep going</span>
+</header>
+<div class="course-container">
+  <hg-course-button *ngFor="let course of courses" [progressBar]="true" [infoPanel]="false" [course]="course" (click)="onSelectCourse(course)"></hg-course-button>
+  <hg-course-button [progressBar]="false" [infoPanel]="false" [course]="addCourse" (click)="onAddCourseClicked()"></hg-course-button>
+</div>

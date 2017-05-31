@@ -1,0 +1,3 @@
+<hg-student *ngIf="user.role === 0" [user]="user"></hg-student>
+<hg-master *ngIf="user.role === 1" [user]="user"></hg-master>
+<hg-admin *ngIf="user.role === 2" [user]="user"></hg-admin>

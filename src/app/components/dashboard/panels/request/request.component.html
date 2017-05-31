@@ -1,0 +1,19 @@
+<div class="container material level-1">
+  <form class="hg-form" (ngSubmit)="onSubmit()">
+    <header><h1>Request</h1></header>
+    <div class="form-inputs">
+      <div class="input">
+        <label for="technology">Technology:</label>
+        <input name="technology" class="hg-input" [(ngModel)]="request.technology" type="text" placeholder="eg. PHP, Angular2">
+      </div>
+      <div class="input">
+        <label for="description">Descriotion</label>
+        <textarea name="description" class="hg-input" [(ngModel)]="request.description" rows="4" cols="80" placeholder="Optional..."></textarea>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button class="hg-button" type="button" (click)="onCancel()">Cancel</button>
+      <button class="hg-button primary" type="submit">Submit</button>
+    </div>
+  </form>
+</div>

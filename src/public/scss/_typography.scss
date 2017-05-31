@@ -1,0 +1,25 @@
+$font-path: './assets/font/';
+
+// @font-face {
+//   font-family: 'Exo';
+//   src: url($font-path + 'exo-regular-webfont.woff2') format('woff2'), url($font-path + 'exo-regular-webfont.woff') format('woff');
+// }
+// @font-face {
+//   font-family: 'Exo-Light';
+//   src: url($font-path + 'exo-extralight-webfont.woff2') format('woff2'), url($font-path + 'exo-extralight-webfont.woff') format('woff');
+// }
+
+@font-face {
+  font-family: 'King';
+  src: url($font-path + 'kingthings_petrock_light-webfont.woff2') format('woff2'), url($font-path + 'kingthings_petrock_light-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'fontello';
+  src: url($font-path + 'fontello.eot?95662152');
+  src: url($font-path + 'fontello.eot?95662152#iefix') format('embedded-opentype'), url($font-path + 'fontello.woff2?95662152') format('woff2'), url($font-path + 'fontello.woff?95662152') format('woff'), url($font-path + 'fontello.ttf?95662152') format('truetype'), url($font-path + 'fontello.svg?95662152#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$brand-font-size: 60px;

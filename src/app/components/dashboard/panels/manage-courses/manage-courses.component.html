@@ -1,0 +1,8 @@
+<header>
+  <h1 class="title">Course Manager</h1>
+  <span class="subtitle"></span>
+</header>
+
+<div *ngFor="let courseAndPanel of courseAndPanels">
+  <hg-course-table *ngIf="!!courseAndPanel.courses.length" [courses]="courseAndPanel.courses" [panel]="courseAndPanel.panel" [user]="user" [status]="true" (accept)="onAcceptCourse($event)" (reject)="onRejectCourse($event)" (delete)="onDeleteCourse($event)"></hg-course-table>
+</div>

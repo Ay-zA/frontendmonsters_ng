@@ -1,0 +1,76 @@
+@import 'colors';
+
+:host
+{
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.group
+{
+  max-width: 900px;
+  flex-flow: column nowrap;
+  flex-shrink: 0;
+  margin-bottom: 15px;
+  width: 100%;
+  position: relative;
+
+  .group-title
+  {
+    text-align: left;
+    margin: 0;
+    padding: .67em;
+  }
+}
+
+.close-button
+{
+  position: absolute;
+  top: 14px;
+  right: 20px;
+  font-size: 16px;
+}
+
+tbody
+{
+  background-color: $background-l2;
+}
+
+td
+{
+  .up
+  {
+    color: $accent4;
+  }
+  &.icon
+  {
+    min-width: 60px;
+    padding: 0;
+    align-items: center;
+    font-size: 24px;
+  }
+
+  &.actions
+  {
+    i
+    {
+      &.fa
+      {
+        line-height: 21px;
+        font-size: .8em;
+      }
+
+      &.fontello
+      {
+        font-size: 1.1em;
+      }
+
+      &.disabled
+      {
+        opacity: 0;
+      }
+    }
+  }
+}

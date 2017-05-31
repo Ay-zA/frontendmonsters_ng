@@ -1,0 +1,14 @@
+<header>
+  <h1 class="title">Welcome</h1>
+  <span class="subtitle">Keep going</span>
+</header>
+
+<div class="course-container">
+  <hg-course-button *ngFor="let course of courses" [infoPanel]="true" [course]="course" (click)="onSelectCourse(course)" [status]="true"></hg-course-button>
+  <hg-course-button [progressBar]="false" [infoPanel]="false" [course]="createCourse" (click)="onCreateCourseClicked()"></hg-course-button>
+</div>
+
+
+<div class="mask" (click)="closeCreateCoursePanel()" *ngIf="createCoursePanel">
+  <hg-create-course class="pop-up" (cancel)="closeCreateCoursePanel()" (submit)="onCreateNewCourse($event)"></hg-create-course>
+</div>

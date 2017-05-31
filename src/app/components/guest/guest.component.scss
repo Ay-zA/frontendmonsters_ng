@@ -1,0 +1,18 @@
+@import 'colors';
+
+:host
+{
+  text-align: center;
+  display: flex;
+  background: $background;
+  align-content: center;
+  align-items: center;
+  flex-flow: column nowrap;
+  min-height: 100%;
+
+  hg-auth
+  {
+    width: 600px;
+    height: 400px;
+  }
+}

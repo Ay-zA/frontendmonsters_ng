@@ -1,0 +1,32 @@
+ace-editor {
+  font-size       : 16px !important;
+  height          : 100%;
+  background-color: $background-d2 !important;
+  text-align      : left;
+  display         : block;
+
+  &::before {
+    font-size      : 72px;
+    font-family    : 'FontAwesome';
+    position       : absolute;
+    top            : 50%;
+    left           : 50%;
+    transform      : translate(-50%, -50%);
+    content        : '\f121';
+    justify-content: center;
+    opacity        : .2;
+  }
+
+  .ace_scroller {
+    background: none;
+  }
+
+  .ace_gutter {
+    background-color: $background-d1 !important;
+
+    .ace_gutter-cell {
+      padding-right: 14px;
+      min-width    : 50px;
+    }
+  }
+}

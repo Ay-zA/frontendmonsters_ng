@@ -1,0 +1,20 @@
+<div class="container material level-1">
+  <span class="fa fa-close icon-button close-button" (click)="onClose()"></span>
+  <div class="content">
+    <header class="title">
+      <h1 class="title">{{course.title}}</h1>
+      <span class="subtitle">{{course.subtitle}}</span>
+    </header>
+
+    <div class="detail">
+      <article *ngFor="let about of course.abouts">
+        <h2>{{about.title}}</h2>
+        <p>{{about.about}}</p>
+      </article>
+    </div>
+  </div>
+  <div class="actions">
+    <button type="button" class="hg-button" (click)="onClose()"><span>Not now</span></button>
+    <button type="button" class="hg-button primary" (click)="onTake()"><span>Take</span></button>
+  </div>
+</div>

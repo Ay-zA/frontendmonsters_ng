@@ -1,0 +1,34 @@
+$darker       : fade-out(#000, .9);
+$lighter      : fade-out(#fff, .9);
+
+$background   : #CCC;
+$background-l1: lighten($background, 2%);
+$background-l2: lighten($background, 5%);
+$background-l3: lighten($background, 8%);
+$background-l4: lighten($background, 12%);
+$background-d1: darken($background, 2%);
+$background-d2: darken($background, 4%);
+$background-d3: darken($background, 6%);
+
+$background-accent: #333;
+$foreground-accent: #EEE;
+
+$foreground   : #333;
+$foreground-t1: fade-out($foreground, .3);
+$foreground-t2: fade-out($foreground, .5);
+$foreground-t3: fade-out($foreground, .8);
+
+$foreground-d1: darken($foreground, 30%);
+$foreground-d2: darken($foreground, 50%);
+
+$accent       : #D42020;
+$accent2      : #d34836;
+$accent3      : #131417;
+$accent4      : #EDD65E;
+
+$accent-ds1   : desaturate($accent,20);
+$accent-d1    : darken($accent, 10%);
+
+hg-sidebar ul  li.active a {
+  color: $background-accent !important;
+}

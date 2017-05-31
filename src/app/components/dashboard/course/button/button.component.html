@@ -1,0 +1,15 @@
+<div class="container material level-1" [ngClass]="{open: !!infoPanel}">
+  <div *ngIf="course.new" class="isNew">
+    <div>New</div>
+  </div>
+  <header>
+    <span *ngIf="course.icon" [ngClass]="{up: status && course.status === 2, down: status && course.status === 0}" class="btn-icon {{course.icon}}"></span>
+    <span *ngIf="course.title" class="btn-title">{{course.title}}</span>
+    <span *ngIf="course.subtitle" class="btn-subtitle">{{course.subtitle}}</span>
+  </header>
+
+  <div *ngIf="infoPanel" class="course-info">
+    <p>{{course.overview}}</p>
+  </div>
+  <span *ngIf="progressBar" class="course-progress"></span>
+</div>

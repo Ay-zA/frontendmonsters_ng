@@ -1,0 +1,10 @@
+<div class="container">
+  <header>
+    <h1 class="title">User Manager</h1>
+    <span class="subtitle"></span>
+  </header>
+
+  <hg-user-table [users]="students"></hg-user-table>
+  <hg-user-table [users]="masters" [add]="'Add&nbsp;Master'" (createUser)="onCreateMaster()" (deleteUser)="onDeleteUser($event)" (saveUser)="onSaveUser($event)"></hg-user-table>
+  <hg-user-table [users]="admins"></hg-user-table>
+</div>

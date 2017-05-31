@@ -1,0 +1,70 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: $foreground;
+  font-size: 16px;
+  font-family: Calibri;
+}
+
+input,
+textarea {
+  border: none;
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:active,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:hover {
+    transition: background-color 99999999999s ease-in-out 0s !important;
+    background: transparent !important;
+    -webkit-text-fill-color: $foreground !important;
+  }
+
+  &.on-ligh-bg {
+    &:-webkit-autofill,
+    &:-webkit-autofill:active,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:hover {
+      -webkit-text-fill-color: $background !important;
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $foreground;
+}
+
+button {
+  user-select: none;
+  border: none;
+  transition: all 0.3s;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+h1 {
+  font-size: 24px;
+  font-family: Exo;
+  font-weight: 200;
+}
+
+::-moz-selection {
+  color: $background;
+  background: $accent;
+}
+
+::selection {
+  color: $background;
+  background: $accent;
+}

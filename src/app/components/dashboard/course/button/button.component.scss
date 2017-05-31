@@ -1,0 +1,141 @@
+@import 'colors';
+
+:host
+{
+  transition: all 300ms ease-in-out;
+  user-select: none;
+  cursor: default;
+  margin: 20px 10px;
+  width: 256px;
+  min-height: 256px;
+  position: relative;
+}
+
+.container
+{
+  height: 100%;
+  padding: 0 1em;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+
+  &:hover
+  {
+    box-shadow: 0 4px 10px 2px rgba(0, 0, 0, .4);
+  }
+
+  &:active
+  {
+    background-color: $background-d1;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .4);
+  }
+
+  &.open
+  {
+    height: 300px;
+    justify-content: space-between;
+    padding: 0;
+  }
+}
+
+.isNew
+{
+  background-color: transparent;
+  color: $background-l1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  border-right: 60px solid transparent;
+  border-top: 60px solid $accent;
+
+  div
+  {
+    top: -39px;
+    position: relative;
+    left: 10px;
+    transform: rotate(-45deg);
+  }
+}
+
+header
+{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 180px;
+  margin: 0;
+
+  .btn-icon
+  {
+    font-size: 60px;
+    margin: 20px 0;
+
+    &.up
+    {
+      color: $accent4;
+    }
+
+    &.down
+    {
+      opacity: .8;
+    }
+  }
+
+  .btn-title
+  {
+    font:
+    {
+      size: 34px;
+      weight: 200;
+    }
+    display: block;
+  }
+
+  .btn-subtitle
+  {
+    font-size: 14px;
+    font-family: Calibri;
+  }
+}
+
+.course-info
+{
+  font:
+  {
+    family: Calibri;
+    weight: 200;
+    size: .8em;
+  }
+
+  background-color: $background-l2;
+  box-shadow: 0 1px 2.97px .03px rgba(0, 0, 0, .2);
+  width: 256px;
+  height: 100px;
+  align-self: flex-end;
+  margin-bottom: 10px;
+  padding: 0 1em;
+}
+
+.course-progress
+{
+  position: absolute;
+  width: 256px;
+  height: 5px;
+  bottom: 0;
+  left: 0;
+  background-color: $background-l2;
+
+  &::after
+  {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: '';
+    background: $accent;
+    height: 5px;
+    width: 128px;
+  }
+}

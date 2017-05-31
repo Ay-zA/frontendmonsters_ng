@@ -1,0 +1,30 @@
+<form class="hg-form" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <div class="user-info">
+    <div class="avatar"><span>{{user.name | nameToAvatar}}</span></div>
+    <!-- <img src="" alt="" class="avatar"> -->
+    <p class="email">{{user.email}}<span class="email-status">Verified</span></p>
+  </div>
+  <div class="form-inputs">
+    <div class="input">
+      <label for="name">Name</label>
+      <input id="name" class="hg-input" formControlName="name" type="text" placeholder="Name...">
+    </div>
+    <div class="input">
+      <label for="password">New Password</label>
+      <input id="password" class="hg-input" formControlName="password" type="password" placeholder="New Password...">
+    </div>
+    <div class="input">
+      <label for="confirm">Confirm Password</label>
+      <input id="confirm" class="hg-input" formControlName="confirm" type="password" placeholder="Confirm...">
+    </div>
+  </div>
+  <div class="form-actions">
+    <div class="oldpass-submit input">
+      <label for="oldpass">Old Password</label>
+      <div class="oldpass-submit">
+        <input id="oldpass" class="hg-input unlock" formControlName="oldpass" type="password" placeholder="Old Password...">
+        <button class="hg-button primary" type="submit"><i [ngClass]="{'fa-lock': !form.controls.oldpass.valid, 'fa-unlock': form.controls.oldpass.valid }" class="fa"></i> Submit</button>
+      </div>
+    </div>
+  </div>
+</form>

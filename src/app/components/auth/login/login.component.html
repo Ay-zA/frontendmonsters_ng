@@ -1,0 +1,24 @@
+<form class="auth-form" [ngClass]="{open: isOpen}" method="post">
+  <div class="close-panel" *ngIf="!isOpen">
+    <h1 class="logo">SIGN IN</h1>
+  </div>
+  <div class="open-panel" *ngIf="isOpen">
+    <header>
+      <h1 class="form-header">{{ forgotPassword ? 'FORGOT PASSWORD' : 'SIGN IN'}}</h1>
+    </header>
+    <div class="form-inputs">
+      <p class="form-error">{{error}}</p>
+      <input name="email" class="hg-input on-ligh-bg" type="text" [(ngModel)]="user.email" placeholder="EMAIL">
+      <input *ngIf="!forgotPassword" name="password" class="hg-input on-ligh-bg" type="password" [(ngModel)]="user.password" placeholder="PASSWORD">
+      <a *ngIf="!forgotPassword"  class="flex-row" (click)="onHelpClick()">Need help?</a>
+    </div>
+    <div *ngIf="!forgotPassword" class="actions">
+      <button class="no-border flat" type="button">Google+</button>
+      <button class="flat" type="submit" (click)="login()">Sign In</button>
+    </div>
+    <div *ngIf="forgotPassword" class="actions">
+      <button class="flat no-border" type="button" (click)="onHelpClick()">Back</button>
+      <button class="flat" type="submit" (click)="onForgotpasswordClick()">Send</button>
+    </div>
+  </div>
+</form>

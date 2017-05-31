@@ -1,0 +1,105 @@
+@import 'colors';
+
+.container
+{
+  padding: 1em 50px;
+  display: flex;
+  flex-flow: column nowrap;
+  overflow: auto;
+  height: 100%;
+}
+
+.close-button
+{
+  position: absolute;
+  top: 14px;
+  right: 20px;
+}
+
+header
+{
+  margin: 0 0 15px;
+}
+
+.detail
+{
+  color: $foreground;
+  text-align: left;
+
+  article
+  {
+    padding-right: 80px;
+    margin-bottom: 30px;
+
+    h2
+    {
+      margin: 0 0 10px;
+      font-size: 26px;
+      font-weight: 200;
+    }
+
+    p
+    {
+      padding-left: 20px;
+      font-size: 14px;
+      font-weight: 100;
+    }
+  }
+}
+
+.actions
+{
+  align-self: flex-end;
+  height: 100%;
+  min-height: 50px;
+  display: flex;
+  align-items: flex-end;
+
+  button
+  {
+    width: 170px;
+    height: 42px;
+    color: $accent;
+    text-align: right;
+    vertical-align: bottom;
+    position: relative;
+    margin-left: 30px;
+
+    &.primary
+    {
+      width: 150px;
+      z-index: 100;
+      color: $background;
+
+      &:before
+      {
+        transition: background .3s;
+        box-sizing: border-box;
+        background-color: $accent-ds1;
+        content: '';
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        right: -15px;
+        top: 6px;
+        transform: rotateZ(45deg);
+      }
+
+      &:hover
+      {
+        &:before
+        {
+          background-color: $accent;
+        }
+      }
+    }
+
+    span
+    {
+      position: absolute;
+      bottom: 5px;
+      right: 15px;
+      font-weight: 200;
+    }
+  }
+}

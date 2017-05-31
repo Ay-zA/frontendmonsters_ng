@@ -1,0 +1,2 @@
+<hg-login [ngClass]="{open: isLoginOpen || (!isLoginOpen && !isRegisterOpen)}" [isOpen]="isLoginOpen" (click)="onPanelClick('login')"></hg-login>
+<hg-register [ngClass]="{open: isRegisterOpen || (!isLoginOpen && !isRegisterOpen)}" [isOpen]="isRegisterOpen" (click)="onPanelClick('register')"></hg-register>

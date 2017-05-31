@@ -1,0 +1,50 @@
+<header>
+  <h1>Exercise Creator</h1>
+</header>
+
+<div class="container material level-1">
+  <header>
+    <h1 class="header">Exercise Info</h1>
+  </header>
+  <form class="hg-form">
+    <div class="form-inputs">
+      <div class="input">
+        <label for="">Title:</label>
+        <input name="title" placeholder="Exercise Title..." class="hg-input" [(ngModel)]="exercise.title" >
+      </div>
+      <div class="input">
+        <label for="">Time:</label>
+        <input name="time" placeholder="Time..." class="hg-input" [(ngModel)]="exercise.time" >
+      </div>
+      <div class="input">
+        <label for="">Experience:</label>
+        <input name="experience" placeholder="Exp..." class="hg-input" [(ngModel)]="exercise.experience" >
+      </div>
+      <!-- <div class="input">
+        <label for="">Main Function:</label>
+        <input name="main" placeholder="Main Function..." class="hg-input" [(ngModel)]="exercise.main" >
+      </div> -->
+    </div>
+  </form>
+</div>
+
+<div class="container material level-1">
+  <header>
+    <h1 class="header">Exercise Learn</h1>
+  </header>
+  <textarea class="hg-input" [(ngModel)]="exercise.learn"  name="Learn" rows="8" cols="80" placeholder="Learn..."></textarea>
+</div>
+
+<div class="container material level-1">
+  <header>
+    <h1 class="header">Pre Code</h1>
+  </header>
+  <textarea class="hg-input" [(ngModel)]="exercise.preCode"  name="Learn" rows="8" cols="80" placeholder="Pre Code..."></textarea>
+</div>
+
+<hg-exercise-editor-table *ngIf="exercise" [exercise]="exercise"></hg-exercise-editor-table>
+
+<div class="toolbar">
+  <button type="button" class="hg-button toolbar-button primary" (click)="onSave()" (mouseenter)="openSaveButton()" (mouseleave)="closeSaveButton()"><span class="fa fa-save"></span> {{showSaveBtn ? 'Save' : ''}}</button>
+  <button type="button" class="hg-button toolbar-button" (click)="onCancel()" (mouseenter)="openCancel()" (mouseleave)="closeCancelButton()"><span class="fa fa-close"></span> {{showCancelBtn ? 'Revert' : ''}}</button>
+</div>

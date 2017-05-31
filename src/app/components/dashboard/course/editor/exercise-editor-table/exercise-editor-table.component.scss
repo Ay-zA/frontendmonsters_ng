@@ -1,0 +1,40 @@
+@import 'colors';
+
+.container
+{
+  margin-bottom: 1em;
+  min-width: 700px;
+  max-width: 700px;
+  flex-shrink: 0;
+
+  .header
+  {
+    padding: 0 1em;
+  }
+}
+
+.close-button
+{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 16px;
+}
+
+tbody
+{
+  background-color: $background-l2;
+}
+
+tr.actions
+{
+  padding: 0;
+
+  td
+  {
+    font-weight: normal;
+    flex: 1;
+    padding: 0;
+    height: 100%;
+  }
+}

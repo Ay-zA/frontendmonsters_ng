@@ -1,0 +1,24 @@
+<div class="container material level-1 group">
+  <header class="header">
+    <h1 class="group-title">Requests</h1>
+  </header>
+
+  <table class="hg-table">
+    <div *ngIf="requests.length === 0" class="empty-table">
+      <span>Oops! Nothings found</span>
+    </div>
+    <tbody *ngIf="requests.length > 0">
+      <tr class="hoverable" *ngFor="let request of requests" (click)="seen(request)">
+        <td class="status-icon"><i [ngClass]="{active: request.status === 0}" class="fa fa-circle"></i></td>
+        <td class="medium">{{request.technology}}</td>
+        <td class="full"><span>{{request.description}}</span></td>
+        <td class="medium"><span>{{request.email}}</span></td>
+        <td class="date"><span>{{request.dateString}}</span></td>
+        <td class="actions">
+          <i class="icon-button fontello icon-cancel" (click)="deleteRequest(request)"></i>
+          <i class="icon-button fa fa-tick"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

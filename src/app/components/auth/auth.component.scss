@@ -1,0 +1,19 @@
+:host
+{
+  margin: 30px 0;
+  display: flex;
+  flex-flow: row wrap;
+  box-shadow: 0 4px 5px 0 rgba(32, 32, 32, .5);
+}
+
+hg-login ,
+hg-register
+{
+  flex: 0;
+  transition: all 1s cubic-bezier(.075, .820, 1, 1);
+
+  &.open
+  {
+    flex: 1;
+  }
+}

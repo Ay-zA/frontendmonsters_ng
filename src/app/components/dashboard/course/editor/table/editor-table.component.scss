@@ -1,0 +1,100 @@
+@import 'colors';
+
+.container
+{
+  margin-bottom: 1em;
+  min-width: 700px;
+  flex-shrink: 0;
+
+  header
+  {
+    position: relative;
+  }
+
+  .header
+  {
+    padding: 0 1em;
+  }
+}
+
+.close-button
+{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 16px;
+}
+
+.course-table
+{
+  width: 100%;
+
+   > tbody > tr
+  {
+    padding: 0;
+  }
+}
+
+tr
+{
+  .status-icon::before
+  {
+    content: '';
+    position: absolute;
+    left: 45px;
+    top: -1%;
+    height: 100%;
+    border: 1px solid;
+    z-index: 10;
+  }
+}
+
+.info
+{
+  display: flex;
+  padding: 0 2em;
+  height: 70px;
+  align-items: center;
+}
+
+td
+{
+  &.create-exercise
+  {
+    min-width: 175px;
+  }
+}
+
+tr.actions td
+{
+  font-weight: normal;
+  flex: 1;
+  padding: 0;
+  height: 100%;
+}
+
+
+.status
+{
+  background: $background-l2;
+  position: absolute;
+  top: -3px;
+  right: 23px;
+  border-radius: 23px;
+  height: 40px;
+  padding: 0 .6em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: small;
+
+  span
+  {
+    margin-right: 5px;
+  }
+}
+
+.delete
+{
+  // color: $accent2;
+}

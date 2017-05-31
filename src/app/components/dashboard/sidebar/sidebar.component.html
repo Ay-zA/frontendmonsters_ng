@@ -1,0 +1,9 @@
+<ul>
+  <li routerLinkActive="active"><a [routerLink]="['home']"><i class="fa fa-home"></i></a></li>
+  <li *ngIf="user.role !== 0"  routerLinkActive="active"><a [routerLink]="['manage/courses']"><i class="fontello icon-book-open"></i></a></li>
+  <li *ngIf="user.role === 2"  routerLinkActive="active"><a [routerLink]="['manage/users']"><i class="fa fa-user"></i></a></li>
+  <li *ngIf="user.role === 2"  routerLinkActive="active"><a [routerLink]="['manage/requests']"><i class="fontello icon-post"></i></a></li>
+</ul>
+<ul class="end">
+  <li class="inverse" routerLinkActive="active"><a [routerLink]="['academy']" ><i class="fa fa-university"></i></a></li>
+</ul>

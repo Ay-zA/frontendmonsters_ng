@@ -1,0 +1,16 @@
+<header>
+  <h1 class="title">Academy</h1>
+  <span class="subtitle">Here you are select course and start to learn</span>
+</header>
+<div class="course-container">
+  <hg-course-button class="open" [progressBar]="false" [infoPanel]="true" *ngFor="let course of courses" [course]="course" (click)="onSelectCourse(course)"></hg-course-button>
+</div>
+<footer>
+  <button class="link-button" (click)="onRequestClick()">Need other course? Let us know</button>
+</footer>
+<div class="mask" *ngIf="selectedCourse">
+  <hg-course-quickshow class="pop-up" [course]="selectedCourse" (feedback)="onCourseDetailFeedback($event)"></hg-course-quickshow>
+</div>
+<div class="mask" *ngIf="request">
+  <hg-request class="pop-up" (submit)="onRequest($event)" (cancel)="onCancel()"></hg-request>
+</div>

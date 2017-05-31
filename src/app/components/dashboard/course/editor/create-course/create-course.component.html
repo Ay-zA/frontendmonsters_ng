@@ -1,0 +1,28 @@
+<div class="material level-1" (click)="$event.stopPropagation();">
+  <form class="hg-form">
+    <header>
+      <h1>New Course</h1></header>
+    <div class="form-inputs">
+      <div class="input">
+        <label for="title">Title</label>
+        <input name="title" id="title" class="hg-input" [(ngModel)]="course.title" type="text" placeholder="Title...">
+      </div>
+      <div class="input">
+        <label for="subtitle">Subtitle</label>
+        <input name="subtitle" id="subtitle" class="hg-input" [(ngModel)]="course.subtitle" type="text" placeholder="Subtitle...">
+      </div>
+      <div class="input">
+        <label for="overview">Overview</label>
+        <textarea name="overview" id="overview" class="hg-input" [(ngModel)]="course.overview" rows="4" cols="80" placeholder="Overview..."></textarea>
+      </div>
+      <div class="input">
+        <label for="icon">Icon</label>
+        <input name="icon" id="icon" class="hg-input" [(ngModel)]="course.icon" type="text" placeholder="eg. devicons devicons-html5">
+      </div>
+    </div>
+    <div class="form-actions">
+      <button class="hg-button" type="button" (click)="onCancel()">Cancel</button>
+      <button class="hg-button primary" type="button" (click)="onSubmit()">Create</button>
+    </div>
+  </form>
+</div>

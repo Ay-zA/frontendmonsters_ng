@@ -1,0 +1,5 @@
+<hg-editor-table *ngIf="!editExercise"  [course]="course" (onNewLesson)="onNewLessonClick()" (onNewExercise)="onNewExerciseClick($event)" (selectExercise)="onSelectExercise($event)" (save)="onSave()" (send)="onSend()" (takeback)="onTakeback()" (delete)="onCourseDeleted()"></hg-editor-table>
+<hg-create-exercise *ngIf="editExercise"  [exercise]="editExercise" (save)="onExerciseEditorSaved()" (revert)="onExerciseEditorCanceled()"></hg-create-exercise>
+<div class="mask" (click)="closeNewExercise()" *ngIf="currentExercise">
+  <hg-new-exercise class="pop-up" [exercise]="currentExercise" (save)="onExerciseSaved()"></hg-new-exercise>
+</div>

@@ -1,0 +1,25 @@
+@import 'colors';
+
+.container
+{
+  margin: 1em;
+  align-self: center;
+  min-width: 900px;
+  flex-shrink: 0;
+}
+
+.group-title
+{
+  padding-left: 1em;
+}
+
+td.status-icon
+{
+  opacity: 1;
+}
+
+.active
+{
+  opacity: 1;
+  color: $accent;
+}

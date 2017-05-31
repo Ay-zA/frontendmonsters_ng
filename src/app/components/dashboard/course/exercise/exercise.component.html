@@ -1,0 +1,52 @@
+<div class="workplace-title">
+  <a routerLink="../../"><i class="fa fa-angle-left"></i>{{lesson.title}}</a>
+</div>
+<div *ngIf="exercise" class="workplace-panel">
+  <section class="window learn">
+    <div [ngClass]="{closed: !learnPanel.isExpanded}" class="panel material">
+      <div *ngIf="learnPanel.isExpanded" class="panel-open">
+        <header>
+          <i class="left fa fa-square-o"></i>
+          <span>Learn</span>
+        </header>
+        <hg-learn [exercise]="exercise"></hg-learn>
+        <button class="hg-button primary flat btn-exercise" (click)="onLearnClicked()">OK!</button>
+      </div>
+      <div *ngIf="!learnPanel.isExpanded" class="panel-close" (click)="openPanel(learnPanel)">
+        <i class="fa fa-graduation-cap"></i>
+      </div>
+    </div>
+  </section>
+
+  <section class="window editor">
+    <div [ngClass]="{closed: !editorPanel.isExpanded}" class="panel material">
+      <div *ngIf="editorPanel.isExpanded" class="panel-open">
+        <header>
+          <i class="left fa fa-square-o"></i>
+          <span>Code</span>
+        </header>
+        <ace-editor [text]="text" [mode]="course.editor" #editor></ace-editor>
+        <button class="hg-button primary flat btn-exercise" (click)="checkExercise()">I'm done</button>
+      </div>
+      <div *ngIf="!editorPanel.isExpanded" class="panel-close" (click)="openPanel(editorPanel)">
+        <i class="fa fa-code"></i>
+      </div>
+    </div>
+  </section>
+
+  <section class="window terminal">
+    <div [ngClass]="{closed: !terminalPanel.isExpanded}" class="panel material">
+      <div *ngIf="terminalPanel.isExpanded" class="panel-open">
+        <header>
+          <i class="left fa fa-square-o"></i>
+          <span>Result</span>
+        </header>
+        <hg-terminal [output]="output" [type]="outputType"></hg-terminal>
+        <button class="hg-button primary flat btn-exercise" [disabled]="!exercise.isDone" (click)="onCompelete()">Let's Go!</button>
+      </div>
+      <div *ngIf="!terminalPanel.isExpanded" class="panel-close" (click)="openPanel(terminalPanel)">
+        <i class="fa fa-terminal"></i>
+      </div>
+    </div>
+  </section>
+</div>

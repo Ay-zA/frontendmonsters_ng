@@ -1,0 +1,145 @@
+// @import url(~https://fonts.googleapis.com/icon?family=Material+Icons)
+// @import url("~https://fonts.googleapis.com/css?family=Exo+2:300,400"); // TODO: ADD
+// @import "~@angular/material/core/theming/prebuilt/deeppurple-amber.scss";
+@import 'scss/colors';
+@import 'scss/normalize';
+@import 'scss/init';
+@import 'scss/typography';
+@import 'scss/global';
+@import 'scss/editor';
+@import 'scss/fontello';
+@import 'scss/scrollbar';
+@import 'scss/loading';
+$break-medium: 980px;
+
+.auth-form
+{
+  display: flex;
+  width: 100%;
+  min-width: 160px;
+  padding: 32px 10%;
+  color: $foreground;
+  background: $accent;
+
+  .close-panel
+  {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    flex-flow: column nowrap;
+    justify-content: center;
+  }
+
+  .open-panel
+  {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .form-header
+  {
+    font-size: 24px;
+    margin-bottom: 40px;
+    text-align: left;
+  }
+
+  .form-error
+  {
+    font-size: small;
+    margin: 0;
+    text-align: left;
+    color: $accent2;
+  }
+
+  .form-inputs
+  {
+    margin-bottom: 8px;
+
+    input
+    {
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+  }
+
+  .actions
+  {
+    display: flex;
+    margin-top: 1em;
+    flex-wrap: wrap;
+
+    button
+    {
+      height: 35px;
+      margin-right: 8px;
+      color: $foreground;
+      border: 1px solid $foreground;
+      background: none;
+      flex: 1;
+
+      &:last-child
+      {
+        margin-right: 0;
+      }
+
+      &.btn-google
+      {
+        border-color: $accent2;
+        background: $accent2;
+      }
+    }
+  }
+}
+
+hg-course ,
+hg-panel-academy ,
+hg-panel-account ,
+hg-panel-home ,
+hg-panel-manage-courses ,
+hg-panel-manage-requests ,
+hg-panel-manage-users ,
+hg-panel-statics ,
+hg-panel-test ,
+hg-panel-workplace
+{
+  position: relative;
+  display: flex;
+  overflow-y: auto;
+  min-height: 100%;
+  max-height: 100vh;
+  text-align: center;
+  flex: 1;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-content: center;
+}
+
+.course-container
+{
+  display: flex;
+  margin-top: 32px;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: stretch;
+  flex-shrink: 0;
+
+  .course-progress
+  {
+    width: 100%;
+  }
+}
+
+.add-course header
+{
+  .btn-title
+  {
+    font-size: 100px!important;
+    font-weight: 100!important;
+  }
+
+  .subtitle
+  {
+    display: none!important;
+  }
+}

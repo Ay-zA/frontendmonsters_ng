@@ -1,0 +1,27 @@
+<div class="container material level-1">
+  <header class="header">
+    <h1>Instructions</h1>
+  </header>
+  <table class="hg-table">
+    <tbody>
+      <tr class="hoverable" *ngFor="let instruction of exercise.instructions, let insIndex = index">
+        <td class="number">{{insIndex}}</td>
+        <td class="full">
+          <hg-editable-label [show]="instruction.$editMode" [text]="instruction.instruction" [placeholder]="'Instruction...'" (save)="onEditInstruction($event, insIndex)"></hg-editable-label>
+        </td>
+        <td class="full">
+          <hg-editable-label [text]="instruction.hint" [placeholder]="'Hint...'" (save)="onEditHint($event, insIndex)"></hg-editable-label>
+        </td>
+        <td class="full">
+          <hg-editable-label [text]="instruction.result" [placeholder]="'Result...'" (save)="onEditResult($event, insIndex)"></hg-editable-label>
+        </td>
+        <td class="actions">
+          <i class="icon-button fontello icon-cancel" (click)="onDeleteInstruction(insIndex)"></i>
+        </td>
+      </tr>
+      <tr class="reverse">
+        <td><button class="hg-button primary" (click)="onNewInstructionClick()">New&nbsp;Instruction</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

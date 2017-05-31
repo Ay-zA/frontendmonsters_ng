@@ -1,0 +1,22 @@
+<div class="container material level-1">
+  <form class="hg-form" (ngSubmit)="onSubmit()" (click)="$event.stopPropagation();">
+    <header><h1>New Exercise</h1></header>
+    <div class="form-inputs">
+      <div class="input">
+        <label for="title">Title</label>
+        <input id="title" name="title" class="hg-input" [(ngModel)]="exercise.title" type="text" placeholder="Title...">
+      </div>
+      <div class="input">
+        <label for="time">Time</label>
+        <input id="time" name="time" class="hg-input" [(ngModel)]="exercise.time" type="text" placeholder="Time...">
+      </div>
+      <div class="input">
+        <label for="experience">Exp</label>
+        <input id="experience" name="experience" class="hg-input" [(ngModel)]="exercise.experience" type="text" placeholder="Exp...">
+      </div>
+    </div>
+    <div class="form-actions">
+      <button class="hg-button primary" type="submit">Create</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,9 @@
+<hg-sidebar [user]="user"></hg-sidebar>
+<div class="panel-container">
+  <router-outlet></router-outlet>
+  <hg-avatar></hg-avatar>
+  <hg-notification></hg-notification>
+  <div class="loading-overlay" *ngIf="loading">
+    <div class="boxLoading"></div>
+  </div>
+</div>

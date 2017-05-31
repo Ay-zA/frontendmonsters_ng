@@ -1,0 +1,26 @@
+<article class="exercise" *ngIf="exercise">
+  <header>
+    <h1 class="learn-title">{{exercise.title}}</h1>
+  </header>
+  <div class="learn-body">
+    {{exercise.learn}}
+  </div>
+  <div class="instructions" *ngIf="exercise.showInstructions">
+    <div class="header">
+      Instructions
+    </div>
+    <div *ngFor="let instruction of exercise.instructions" class="learn-body">
+      <article class="instruction">
+        <i [ngClass]="{active: isRight(instruction), 'fa-check-square-o': isRight(instruction), 'fa-square-o': !isRight(instruction), error: isWrong(instruction)}" class="fa"></i>
+        <span [ngClass]="{active: isRight(instruction), error: isWrong(instruction)}">
+          {{instruction.instruction}}
+        </span>
+        <div class="hint" (click)="onHintClick(instruction)">
+          <i class="fa fa-lightbulb-o" [ngClass]="{active: instruction.isHintVisible}"></i>
+          <span *ngIf="!instruction.isHintVisible">Need Help?</span>
+          <span class="active" *ngIf="instruction.isHintVisible">{{instruction.hint}}</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</article>

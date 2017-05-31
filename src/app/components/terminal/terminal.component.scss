@@ -1,0 +1,33 @@
+@import 'colors';
+
+:host
+{
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.terminal
+{
+  text-align: left;
+  padding: 5px 10px;
+  flex: 1;
+  background-color: $background-d2;
+
+  &::before
+  {
+    font-size: 72px;
+    font-family: 'FontAwesome';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    content: '\f120';
+    justify-content: center;
+    opacity: .2;
+  }
+
+  &.error
+  {
+    color: $accent2;
+  }
+}

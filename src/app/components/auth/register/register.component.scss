@@ -1,0 +1,41 @@
+@import 'colors';
+
+:host
+{
+  display: inline-flex;
+}
+
+form
+{
+  background: $accent3;
+  color: $foreground-accent;
+
+  header
+  {
+    color: $foreground-accent;
+  }
+
+  .hg-input
+  {
+    -webkit-box-shadow: 0 0 0 1000px $accent3 inset;
+    color: $foreground-accent;
+
+
+    &:-webkit-autofill
+    {
+      -webkit-transition-delay: 999999s;
+
+      &:active ,
+      &:focus ,
+      &:hover
+      {
+        color: $foreground-accent !important;
+      }
+    }
+  }
+
+  .actions button
+  {
+    color: $foreground-accent;
+  }
+}

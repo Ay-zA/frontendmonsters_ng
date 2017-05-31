@@ -1,0 +1,31 @@
+<div class="material level-1 group">
+  <h1 class="group-title table-header" (click)="panel.toggleExpand()">
+    {{panel.name}}<span class="icon-button close-button"><i class="fa fa-chevron-{{panel.isExpanded ? 'up': 'down'}}"></i></span>
+  </h1>
+  <table class="hg-table" [hidden]="!panel.isExpanded">
+    <div *ngIf="courses.length === 0" class="empty-table">
+      <span>Oops! Nothings found</span>
+    </div>
+    <tbody *ngIf="courses.length > 0">
+      <tr class="hoverable" *ngFor="let course of courses, let courseIndex=index" (dblclick)="editCourse(course.uTitle)">
+        <td class="status-icon"><i [ngClass]="{up: status && course.status === 2}" class="fa fa-circle"></i></td>
+        <td class="icon"><i [ngClass]="{up: status && course.status === 2}" class="{{course.icon}}"></i></td>
+        <td class="title full">{{course.title}} <span>{{course.subtitle}}</span></td>
+        <td class="author"><span>{{course.author}}</span></td>
+        <td class="info" *ngIf="course.lessons">
+          <span>{{course.lessons.length}}&nbsp;Lessons</span>
+          <span>{{course.exerciseCount}}&nbsp;Exercises</span>
+          <span>{{course.examCount}}&nbsp;Exams</span>
+        </td>
+        <td class="time small"><span>{{course.time}}&nbsp;Min</span></td>
+        <td class="status small"><span>{{course.statusName}}</span></td>
+        <td class="actions row">
+          <i class="icon-button fa fa-edit" *ngIf="user.role === 1" (click)="editCourse(course.uTitle)"></i>
+          <i class="icon-button fa fa-check" *ngIf="user.role === 2 && course.status === 1" (click)="acceptCourse(course)"></i>
+          <i class="icon-button fa fa-power-off" *ngIf="user.role === 2 && course.status === 2" (click)="rejectCourse(course)"></i>
+          <i class="icon-button fontello icon-cancel" [ngClass]="{disabled: course.status === 2}" (click)="onDeleteCourse(course)"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

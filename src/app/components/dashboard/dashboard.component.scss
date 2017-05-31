@@ -1,0 +1,18 @@
+@import 'colors';
+
+:host
+{
+  background-color: $background;
+  color: $foreground;
+  display: flex;
+  flex-flow: row nowrap;
+  min-height: 100%;
+  min-width: 100%;
+  position: absolute;
+
+  .panel-container
+  {
+    position: relative;
+    flex: 1;
+  }
+}

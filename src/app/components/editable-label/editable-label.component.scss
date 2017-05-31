@@ -1,0 +1,46 @@
+@import 'colors';
+
+.label
+{
+  line-height: 1.5em;
+  word-wrap: break-word;
+}
+
+[hidden]
+{
+  display: none !important;
+}
+
+.open
+{
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  height: 24px;
+
+  input
+  {
+    flex: 1;
+    padding: 0 34px 0 0;
+  }
+
+  .actions
+  {
+    position: absolute;
+    right: 0;
+    top: 4px;
+  }
+
+  button
+  {
+    height: 100%;
+    width: 15px;
+    padding: 0;
+    background-color: transparent;
+  }
+}
+
+.placeholder
+{
+  opacity: .5;
+}

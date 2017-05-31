@@ -1,0 +1,84 @@
+@import 'colors';
+
+:host
+{
+  color: $foreground-t2;
+  padding: 3em;
+}
+
+.user-info
+{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+
+  .avatar
+  {
+    background-color: $background-l2;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span
+    {
+      font-size: 72px;
+      font-family: 'Exo';
+      font-weight: 200;
+      color: $accent;
+      position: absolute;
+    }
+  }
+
+  .email
+  {
+    margin: 0 20px;
+    display: inline-block;
+
+    span
+    {
+      margin-left: 10px;
+      color: $accent;
+      font-size: small;
+    }
+  }
+}
+
+form
+{
+  max-width: 800px;
+  padding: 0;
+
+  label
+  {
+    flex: 1;
+  }
+
+  .form-actions
+  {
+    .oldpass-submit
+    {
+      display: flex;
+      flex-flow: row nowrap;
+      flex: 1;
+
+      label
+      {
+        max-width: 350px;
+        text-align: left;
+        padding: 10px 0;
+      }
+
+      button
+      {
+        height: 100%;
+      }
+
+      .unlock
+      {
+        min-width: auto;
+      }
+    }
+  }
+}

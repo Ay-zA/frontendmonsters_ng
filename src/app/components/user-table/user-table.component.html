@@ -1,0 +1,38 @@
+<div class="material level-1 group">
+  <table class="hg-table">
+    <div *ngIf="users.length === 0" class="empty-table">
+      <span>Oops! Nothings found</span>
+    </div>
+    <tbody *ngIf="users.length > 0">
+      <tr class="hoverable" *ngFor="let user of users, let userIndex=index">
+        <td class="status-icon"><i class="fa fa-circle"></i></td>
+        <td class="avatar">
+          <span *ngIf="user.name">{{ user.name  | nameToAvatar}}</span>
+          <td class="email">
+            <hg-editable-label *ngIf="isEditable(user)" [show]="user.$editMode" [text]="user.email" [placeholder]="'Email...'" (save)="onEmailSubmit($event, user);"></hg-editable-label>
+            <p *ngIf="!isEditable(user)">{{user.email}}</p>
+            <span>{{user.name}}</span></td>
+          <td class="info">
+            <span>Level&nbsp;{{user.level}}</span>
+            <span>{{user.experience}}&nbsp;Experience</span>
+            <span>{{user.achievements.length}}&nbsp;Achievement</span>
+          </td>
+          <td class="license"><span>
+          {{user.licenses.length}}&nbsp;Licenses
+          </span></td>
+          <td class="date"><span>{{user.dateString}}</span></td>
+          <td class="status">
+            <span *ngIf="user.status !== -1">{{user.statusName}}</span>
+            <button class="hg-button primary flat" *ngIf="user.status === -1" (click)="onSaveUser(user)">Save</button>
+            <!-- <span *ngIf="user.statusName">{{user.statusName}}</span> -->
+          </td>
+          <td class="actions" *ngIf="user.status < 1 && user.role === 1">
+            <i class="icon-button fontello icon-cancel" (click)="onDeleteUser(user)"></i>
+          </td>
+      </tr>
+      <tr *ngIf="add" class="reverse">
+        <td class=""><button class="hg-button primary" type="button" name="addUser" (click)="onCreateUser()">{{add}}</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

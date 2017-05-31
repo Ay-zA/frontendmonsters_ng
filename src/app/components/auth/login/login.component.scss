@@ -1,0 +1,48 @@
+@import 'colors';
+
+:host
+{
+  display: inline-flex;
+}
+
+form
+{
+  background-color: $accent;
+  color: $accent3;
+
+  header
+  {
+    color: $accent3;
+  }
+
+  .hg-input
+  {
+    box-shadow: 0 0 0 1000px $accent inset;
+    color: $accent3;
+    border: 0;
+    border-bottom: 1px solid $accent3;
+
+    &::-webkit-input-placeholder
+    {
+      color: $accent3;
+    }
+  }
+
+  a
+  {
+    display: block;
+    text-align: right;
+    font-size: 14px;
+    color: $accent3;
+  }
+
+  .actions
+  {
+    button
+    {
+      flex: 1;
+      border: 1px solid $accent3;
+      color: $accent3;
+    }
+  }
+}

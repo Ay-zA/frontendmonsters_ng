@@ -1,0 +1,209 @@
+@import 'colors';
+
+:host
+{
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.container
+{
+  max-width: 900px;
+  min-width: 600px;
+  padding: 2em 1em;
+
+  .course-number
+  {
+    margin: 0 .5em;
+  }
+
+  .lessons
+  {
+    flex-flow: column nowrap;
+    flex-shrink: 0;
+  }
+
+  .detail
+  {
+    margin-bottom: 1em;
+    display: flex;
+    flex-shrink: 0;
+    height: 120px;
+    flex-direction: row;
+
+    header
+    {
+      background: $background-l3;
+      width: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+
+      .btn-icon
+      {
+        font-size: 60px;
+      }
+    }
+
+    .title
+    {
+      font-family: Exo;
+      font-weight: 200;
+      margin: 0;
+    }
+
+    .content
+    {
+      overflow: hidden;
+      display: flex;
+      flex-flow: column nowrap;
+      text-align: left;
+      padding: 10px;
+      flex: 1;
+    }
+
+    .actions
+    {
+      display: flex;
+      align-items: flex-end;
+
+      button
+      {
+        width: 100px;
+        margin: 10px;
+      }
+    }
+  }
+
+  .close-button
+  {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+  }
+
+  .done
+  {
+    h1 ,
+    td
+    {
+      color: $accent;
+      opacity: 1;
+    }
+  }
+}
+
+table
+{
+  &.riched
+  {
+    h1
+    {
+      opacity: 1;
+    }
+  }
+
+  tr.riched
+  {
+    opacity: 1;
+
+    h1
+    {
+      opacity: 1;
+    }
+
+    td
+    {
+      opacity: 1;
+    }
+  }
+
+  h1
+  {
+    opacity: .3;
+    margin: 0;
+    padding: .67em 0;
+    font-size: 1.2em;
+  }
+
+  &.current
+  {
+    h1
+    {
+      opacity: 1;
+    }
+
+    tr.current td
+    {
+      opacity: 1;
+
+      &.icon::before
+      {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+tbody
+{
+  background-color: $background-l2;
+}
+
+td
+{
+  opacity: .3;
+
+  &.experience
+  {
+    min-width: 100px;
+    text-align: center;
+
+    hg-loading-bar
+    {
+      height: 5px;
+      margin: 5px 0;
+    }
+  }
+
+  &.actions
+  {
+    min-width: 100px;
+  }
+}
+
+tr
+{
+  .status-icon::before
+  {
+    content: '';
+    position: absolute;
+    left: 28.5px;
+    top: -43%;
+    height: 84%;
+    border: 1px solid;
+  }
+
+  &:first-child
+  {
+    .status-icon::before
+    {
+      top: 0;
+      height: 46%;
+    }
+  }
+
+  &:last-child
+  {
+    .status-icon::after
+    {
+      content: '';
+      position: absolute;
+      left: 28.5px;
+      top: 50%;
+      height: 46%;
+      border: 1px solid;
+    }
+  }
+}

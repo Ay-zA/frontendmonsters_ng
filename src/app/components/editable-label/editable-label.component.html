@@ -1,0 +1,13 @@
+<span *ngIf="!permission">{{text}}</span>
+<form *ngIf="permission" [ngClass]="{'active':show}" name='inputForm'>
+  <div class="open" [hidden]='!show'>
+    <input class="hg-input" name="text" [(ngModel)]="text" #myInput placeholder="{{placeholder}}">
+    <span class="actions">
+      <button (click)='callSave()'><i class="fa fa-check icon-button"></i></button>
+      <button (click)='cancelEditable()'><i class="fa fa-close icon-button"></i></button>
+    </span>
+  </div>
+  <div class="close" *ngIf="!show">
+    <label class="label" [ngClass]="{placeholder: !text}" (dblclick)='makeEditable()'>{{text || placeholder}}</label>
+  </div>
+</form>

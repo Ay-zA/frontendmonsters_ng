@@ -1,0 +1,78 @@
+<div class="container material level-1">
+  <header>
+    <h1 class="header">Course Info</h1>
+    <span [ngClass]="{'text-accent': course.status === 2}" class="status"><span class="fa {{btnStatus[course.status].class}}"></span> {{btnStatus[course.status].name}}</span>
+  </header>
+  <form class="hg-form">
+    <div class="form-inputs">
+      <div class="input">
+        <label for="">Title:</label>
+        <span class="read-only">{{course.title}}</span>
+      </div>
+      <div class="input">
+        <label for="">Subtitle:</label>
+        <input name="subtitle" placeholder="Subtitle..." class="hg-input" [(ngModel)]="course.subtitle">
+      </div>
+      <div class="input">
+        <label for="">Overview:</label>
+        <textarea name="overview" placeholder="Overview..." class="hg-input" [(ngModel)]="course.overview"></textarea>
+      </div>
+      <div class="input">
+        <label for="">Icon:</label>
+        <input name="icon" placeholder="Icon..." class="hg-input" [(ngModel)]="course.icon">
+      </div>
+    </div>
+  </form>
+</div>
+<div class="container material level-1">
+  <header class="header">
+    <h1>Course Editor</h1>
+  </header>
+  <table class="hg-table course-table">
+    <tbody>
+      <tr class="col" *ngFor="let lesson of course.lessons, let lessonIndex = index">
+        <div class="info">
+          <td class="status-icon"><i class="fa fa-circle"></i></td>
+          <td class="full">
+            <hg-editable-label [text]="lesson.title" [placeholder]="'Lesson Name...'" [show]="lesson.$editMode" (save)="onLessonNameChanged($event, lessonIndex)"></hg-editable-label>
+          </td>
+          <td class="small"><span>{{lesson.time}}&nbsp;min</span></td>
+          <td class="small"><span>{{lesson.experience}}&nbsp;xp</span></td>
+          <td class="actions">
+            <i class="icon-button fontello icon-cancel" (click)="onDeleteLesson(lessonIndex)"></i>
+          </td>
+
+        </div>
+        <div class="exercises">
+          <table class="hg-table level-2">
+            <tbody>
+              <tr class="hoverable" *ngFor="let exercise of lesson.exercises, let exIndex = index" (dblclick)="onSelectExercise(exercise, exIndex, lessonIndex)">
+                <td class="number">{{exIndex}}</td>
+                <td class="full">
+                  <hg-editable-label [text]="exercise.title" [placeholder]="'Exercise Name...'" (save)="onExerciseNameChanged($event, lessonIndex, exerciseIndex)"></hg-editable-label>
+                  <span>Intractive Lesson</span>
+                </td>
+                <td class="small"><span>{{exercise.time}}&nbsp;min</span></td>
+                <td class="small"><span>{{exercise.experience}}&nbsp;xp</span></td>
+                <td class="actions">
+                  <i class="icon-button fontello icon-cancel" (click)="onDeleteExercise(lessonIndex, exIndex)"></i>
+                </td>
+              </tr>
+              <tr class="reverse">
+                <td class="create-exercise"><button class="hg-button primary" (click)="onNewExerciseClick(lessonIndex)">New Exercise</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </tr>
+      <tr class="actions">
+        <td class="create-lesson"><button class="hg-button primary" (click)="onNewLessonClick()">New Lesson</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="toolbar">
+  <button type="button" class="hg-button primary toolbar-button" (click)="saveCourse()" (mouseenter)="openSaveButton()" (mouseleave)="closeSaveButton()"><span class="fa fa-save"></span> {{showSaveBtn ? 'Save' : ''}}</button>
+  <button type="button" class="hg-button delete toolbar-button" (click)="onDelete()" (mouseenter)="openDeleteButton()" (mouseleave)="closeDeleteButton()" *ngIf="course.status !== 2"><span class="fa fa-trash"></span> {{showDeleteBtn ? 'Delete' : ''}}</button>
+  <button type="button" class="hg-button toolbar-button" (click)="onAction()" (mouseenter)="openSendButton()" (mouseleave)="closeSendButton()" *ngIf="!!btnStatus[course.status].action"><span class="fa {{btnStatus[course.status].actionClass}}"></span> {{showSendBtn ? btnStatus[course.status].action : ''}}</button>
+</div>
