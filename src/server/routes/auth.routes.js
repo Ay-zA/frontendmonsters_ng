@@ -1,17 +1,14 @@
 const User = require('../models/user.model');
 const config = require('../configs/config');
 const jwt = require('jsonwebtoken');
-const sendgrid = require('sendgrid')('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');
-const helper = require('sendgrid').mail;
 
-var handleRegister = function(req, res, next) {
+let handleRegister = function(req, res, next) {
   if (!req.body || !req.body.password || !req.body.email) {
     res.json({
       success: false,
       message: 'Please enter an email and password to register.'
     });
   } else {
-
     let handleSaveNewUser = function(err, savedUser) {
       if (err) {
         let errMessage = err.code === 11000 ? 'The email address already exists.' : `There is some error. _ErrCode: ${err}`;
@@ -20,24 +17,6 @@ var handleRegister = function(req, res, next) {
           message: errMessage
         });
       } else {
-        let fromEmail = new helper.Email('noreplay@herogramer.com');
-        let toEmail = new helper.Email(savedUser.email);
-        let subject = 'Welcome to Herogramer';
-        let content = new helper.Content('text/html', 'Welcome to herogramer, to compelete registration click on this link <a href="#">Link</a>s');
-        let mail = new helper.Mail(fromEmail, subject, toEmail, content);
-
-        let request = sendgrid.emptyRequest({
-          method: 'POST',
-          path: '/v3/mail/send',
-          body: mail.toJSON()
-        });
-
-        sendgrid.API(request, function(error, response) {
-          console.log(response.statusCode);
-          console.log(response.body);
-          console.log(response.headers);
-        });
-
         res.json({
           success: true,
           message: `${savedUser} successfuly registered.`
@@ -45,22 +24,24 @@ var handleRegister = function(req, res, next) {
       }
     };
     let role = req.body.role || 0;
+    console.log(req.body);
     let newUser = new User({
       name: req.body.name,
       password: req.body.password,
       email: req.body.email,
-      role: role
+      role
     });
 
     newUser.save(handleSaveNewUser);
   }
 };
 
-var handleAuthenticate = function(req, res, next) {
+let handleAuthenticate = function(req, res, next) {
   let handleFindUser = function(err, user) {
     if (err) {
       throw err;
     }
+    console.log(user);
     if (!user) {
       res.json({
         success: false,
@@ -69,7 +50,7 @@ var handleAuthenticate = function(req, res, next) {
     } else {
       let password = req.body.password;
       user.comparePassword(password, (err, isMatch) => {
-        if (!err, isMatch) {
+        if (!err && isMatch) {
           let userInfo = {
             user: user.getUserInfo()
           };
@@ -87,6 +68,7 @@ var handleAuthenticate = function(req, res, next) {
       });
     }
   };
+  console.log(req.body.email);
   User.findOne({
     email: req.body.email
   }, handleFindUser);

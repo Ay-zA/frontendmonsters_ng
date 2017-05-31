@@ -1,7 +1,6 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const favicon = require('serve-favicon');
-const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const passport = require('passport');
@@ -9,15 +8,27 @@ const config = require('./configs/config');
 
 // Init
 const app = express();
-app.disable('x-powered-by');
+const isDevMode = config.server.env === 'dev';
+const connectionString = isDevMode ? config.db.debugConnectionString : config.db.connectionString;
 
-var isDevMode = config.server.env === 'dev';
+app.disable('x-powered-by');
 if (isDevMode) {
   console.warn('Dev Mode');
 }
 
+function onConnectedToDb(error) {
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  // if (isDevMode) {
+    config.initMockDatabase();
+  // }
+  console.log('[mongoose]: Connected to database');
+}
+
 // DB
-const connectionString = isDevMode ? config.db.debugConnectionString : config.db.connectionString;
 mongoose.connect(connectionString, onConnectedToDb);
 
 // Middlewares
@@ -46,12 +57,13 @@ app.get('/*', function(req, res) {
 
 // 404 Not Found
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  const err = new Error('Not Found');
+
   next(err);
 });
 
 // Error!
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res) {
   res.status(err.status || 500);
   res.json({
     error: {},
@@ -61,15 +73,3 @@ app.use(function(err, req, res, next) {
 
 // Exports
 module.exports = app;
-
-function onConnectedToDb(error) {
-  if (error) {
-    console.error(error);
-    return;
-  }
-
-  // if (isDevMode) {
-    // config.initMockDatabase();
-  // }
-  console.log('[mongoose]: Connected to database');
-}
