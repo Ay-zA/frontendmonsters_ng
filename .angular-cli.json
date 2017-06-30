@@ -4,7 +4,7 @@
     "name": "frontendmonster"
   },
   "apps": [{
-    "root": "src",
+    "root": "client",
     "outDir": "dist",
     "assets": [
       "public/assets"
