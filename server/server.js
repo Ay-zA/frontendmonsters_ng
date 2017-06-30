@@ -29,7 +29,7 @@ config.initJWTPassport(passport);
 app.use(express.static(config.pathes.assets));
 
 // Routes
-const apiRouter = require('./routes/api.routes')(passport);
+const apiRouter = require('./routes/api.routes');
 
 app.use('/api', apiRouter);
 
@@ -38,20 +38,20 @@ app.get('/*', function(req, res) {
   res.sendFile(config.pathes.index);
 });
 
-// 404 Not Found
+// Not Found
 app.use(function(req, res, next) {
-  const err = new Error('Not Found');
-
+  let err = new Error('Not Found');
+  err.status = 404;
   next(err);
 });
 
-// Error!
-app.use(function(err, req, res) {
+/* eslint-disable no-unused-vars, no-param-reassign */
+app.use(function(err, req, res, next) {
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
   res.status(err.status || 500);
-  res.json({
-    error: {},
-    message: err.message
-  });
+  res.send('500');
 });
 
 // Exports

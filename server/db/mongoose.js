@@ -1,21 +1,35 @@
 const mongoose = require('mongoose');
-const config = require('../configs/config');
-const isDevMode = config.server.env === 'dev';
-
+const { db: dbConfig, server: serverConfig } = require('../configs/config');
+const isDevMode = serverConfig.isDev;
 mongoose.Promise = global.Promise;
 
-const connectionString = isDevMode
-  ? config.db.debugConnectionString
-  : config.db.connectionString;
+const connectionString = isDevMode ?
+  dbConfig.debugConnectionString :
+  dbConfig.connectionString;
 
-mongoose.connect(connectionString, {useMongoClient: true}).then(() => {
+mongoose.connect(connectionString);
+
+mongoose.connection.on('connected', function() {
+  console.log('Mongoose default connection open to ' + connectionString);
   if (isDevMode) {
-    config.initMockDatabase();
+    require('../utility/mockDb')();
   }
-  console.log('[mongoose]: Connected to database');
-}).catch(e => {
-  console.error(e);
-  process.exit(1);
+});
+
+mongoose.connection.on('error', function(err) {
+  console.log('Mongoose default connection error: ' + err);
+});
+
+mongoose.connection.on('disconnected', function() {
+  console.log('Mongoose default connection disconnected');
+});
+
+// If the Node process ends, close the Mongoose connection
+process.on('SIGINT', function() {
+  mongoose.connection.close(function() {
+    console.log('Mongoose default connection disconnected through app termination');
+    process.exit(0);
+  });
 });
 
 module.exports = {

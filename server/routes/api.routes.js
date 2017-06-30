@@ -1,10 +1,18 @@
 const { Router } = require('express');
-const apiRouter = new Router();
+const apiRouter = Router(); // eslint-disable-line new-cap
 
-module.exports = function(passport) {
-  const courseRoutes = require('./course.routes')(apiRouter, passport);
-  const authRoutes = require('./auth.routes')(apiRouter, passport);
-  const userRoutes = require('./user.routes')(apiRouter, passport);
-  const requestRoutes = require('./request.routes')(apiRouter, passport);
-  return apiRouter;
-};
+const courseRoutes = require('./course.routes');
+const authRoutes = require('./auth.routes');
+const userRoutes = require('./user.routes');
+const requestRoutes = require('./request.routes');
+
+apiRouter.get('/health-check', (req, res) =>
+  res.send('OK')
+);
+
+apiRouter.use('/auth', authRoutes);
+apiRouter.use('/course', courseRoutes);
+apiRouter.use('/user', userRoutes);
+apiRouter.use('/request', requestRoutes);
+
+module.exports = apiRouter;

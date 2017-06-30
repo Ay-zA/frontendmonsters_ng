@@ -4,7 +4,6 @@ const dbConfig = require('./db.config');
 const tokenConfig = require('./token.config');
 const passportConfig = require('./passport.config');
 const jwtStrategy = require('./jwtStrategy');
-const mockDb = require('../test/mockDb');
 
 module.exports = {
   db: dbConfig,
@@ -12,6 +11,5 @@ module.exports = {
   pathes,
   token: tokenConfig,
   initJWTPassport: jwtStrategy,
-  passport: passportConfig,
-  initMockDatabase: mockDb
+  passport: passportConfig
 };

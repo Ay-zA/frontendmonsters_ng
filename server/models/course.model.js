@@ -104,7 +104,6 @@ let createUTitle = function(next) {
   this.uTitle = this.title.replace(/\s+/g, '_').toLowerCase();
   for (let lesson of this.lessons) {
     lesson.uTitle = lesson.title.replace(/\s+/g, '_').toLowerCase();
-    console.log(lesson.uTitle);
   }
   next();
 };
@@ -114,6 +113,6 @@ courseSchema.pre('save', createUTitle);
 const model = mongoose.model('courses', courseSchema);
 
 module.exports = {
-  model: model,
+  model,
   schema: courseSchemaObject
 };

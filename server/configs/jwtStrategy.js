@@ -4,7 +4,6 @@ const User = require('../models/user.model');
 const tokenConfig = require('./token.config');
 
 module.exports = function(passport) {
-
   let jwtStrategyOpts = {
     jwtFromRequest: ExtractJwt.fromAuthHeader(),
     secretOrKey: tokenConfig.secret

@@ -38,27 +38,33 @@ const userSchema = new Schema({
     type: Number,
     default: 0
   },
-  achievements: [{
-    type: ObjectId,
-    ref: 'achievements'
-  }],
+  achievements: [
+    {
+      type: ObjectId,
+      ref: 'achievements'
+    }
+  ],
   licenses: [licenseSchema]
 });
 
-userSchema.methods.comparePassword = function(pw, cb) {
+userSchema.methods.comparePassword = function(pw) {
   let user = this;
-  let handleComparePassword = function(err, isMatch) {
-    if (err) {
-      return cb(err);
-    }
-    cb(null, isMatch);
-  };
-  bcrypt.compare(pw, user.password, handleComparePassword);
+
+  bcrypt
+    .compare(pw, user.password)
+    .then( isMatch => {
+      return new Promise( (resolve) => {
+        resolve(isMatch);
+      });
+    })
+    .catch(e => {
+      throw new Error(e);
+    });
 };
 
 userSchema.methods.getUserInfo = function() {
   let userCourseTitles = this.courses.map(course => course.title);
-  var user = {
+  let user = {
     _id: this._id,
     email: this.email,
     name: this.name,
@@ -69,32 +75,28 @@ userSchema.methods.getUserInfo = function() {
     licenses: this.licenses,
     role: this.role
   };
+
   return user;
 };
 
-var handleSaveNewUser = function(next) {
+userSchema.pre('save', function(next) {
   let user = this;
   if (!user.isModified('password') && !user.isNew) {
     return next();
   }
 
-  let saveHashedPassword = function(err, hashedPassword) {
-    if (err) {
-      return next(err);
-    }
-    user.password = hashedPassword;
-    next();
-  };
-
   let hashPassword = function(err, salt) {
     if (err) {
       return next(err);
     }
-    bcrypt.hash(user.password, salt, saveHashedPassword);
+
+    bcrypt.hash(user.password, salt).then(hashedPassword => {
+      user.password = hashedPassword;
+      next();
+    }).catch(e => next(e));
   };
 
   bcrypt.genSalt(10, hashPassword);
-};
+});
 
-userSchema.pre('save', handleSaveNewUser);
 module.exports = mongoose.model('users', userSchema);

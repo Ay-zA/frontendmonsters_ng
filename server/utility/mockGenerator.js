@@ -1,26 +1,32 @@
+/* eslint-disable no-shadow, no-use-before-define */
 const User = require('../models/user.model');
 const Course = require('../models/course.model').model;
 const Lesson = require('../models/lesson').model;
 const Exercise = require('../models/exercise').model;
-const Exam = require('../models/exam').model;
+// const Exam = require('../models/exam').model;
 const Achievement = require('../models/achievement.model').model;
 const Request = require('../models/request.model').model;
 
-let handleError = function(error) {
-  if (error) {
-    console.error(error);
-  }
-};
-let generateRequest = function (technology, description, user, status) {
+function title2UTitle(title) {
+  return title
+    .replace(/\s+/g, '_')
+    .toLowerCase();
+}
+
+let generateRequest = function(technology, description, user, status) {
   let request = new Request({
-    technology: technology,
-    description: description,
+    technology,
+    description,
     email: user.email,
-    status: status,
+    status,
     date: new Date()
   });
 
-  request.save(handleError);
+  request
+    .save()
+    .then(newTech => { console.log('  -' + newTech.technology); })
+    .catch(console.error);
+
   return request;
 };
 
@@ -29,31 +35,41 @@ let generateUser = function(username, role, level, ...courses) {
     name: username,
     password: 'hg',
     email: `${username}@hg.com`,
-    courses: courses,
-    level: level,
+    courses,
+    level,
     experience: 0,
     status: Math.round(Math.random()),
-    role: role
+    role
   });
-  user.save(handleError);
+
+  user
+    .save()
+    .then(newUser => { console.log('  -' + newUser.email); })
+    .catch(console.error);
+
   return user;
 };
 
 let generateAchievement = function(title, icon, about) {
   let achievement = new Achievement({
-    title: title,
-    icon: icon,
-    about: about
+    title,
+    icon,
+    about
   });
-  achievement.save(handleError);
+
+  achievement
+    .save()
+    .then(newAch => { console.log('  -' + newAch.title); })
+    .catch(console.error);
+
   return achievement;
 };
 
 let generateCourse = function(title, icon, author, status, editor) {
   let course = new Course({
     uTitle: title2UTitle(title),
-    title: title,
-    icon: icon,
+    title,
+    icon,
     subtitle: `Learn the fundamentals of ${title}.`,
     overview: 'Here is some course overview you can read and choose what course you need.',
     abouts: [{
@@ -65,36 +81,41 @@ let generateCourse = function(title, icon, author, status, editor) {
     }],
     author: author._id,
     lessons: [],
-    status: status,
+    status,
     license: {
-      title: title,
-      icon: icon,
+      title,
+      icon,
       about: 'This is HTML5 License'
     },
     new: false,
-    editor: editor
+    editor
   });
 
   let lessonCount = Math.ceil(Math.random() * 3) + 1;
-  for (var i = 0; i < lessonCount; i++) {
+  for (let i = 0; i < lessonCount; i++) {
     let lessonTitle = `${title} Lesson ${i}`;
     let lesson = generateLesson(lessonTitle);
     course.lessons.push(lesson);
   }
-  course.save(handleError);
+
+  course
+    .save()
+    .then(newCourse => { console.log('  -' + newCourse.title); })
+    .catch(console.error);
+
   return course;
 };
 
 function generateLesson(title) {
   let lesson = new Lesson({
     uTitle: title2UTitle(title),
-    title: title,
+    title,
     exercises: [],
     exams: []
   });
 
   let exerciseCount = Math.ceil(Math.random() * 5) + 1;
-  for (var exerciseIndex = 0; exerciseIndex < exerciseCount; exerciseIndex++) {
+  for (let exerciseIndex = 0; exerciseIndex < exerciseCount; exerciseIndex++) {
     let exercise = generateExercise(title, exerciseIndex);
     lesson.exercises.push(exercise);
   }
@@ -113,7 +134,7 @@ function generateExercise(title, index) {
   });
   let instructionCount = Math.ceil(Math.random() * 5) + 1;
 
-  for (var instructionIndex = 0; instructionIndex < instructionCount; instructionIndex++) {
+  for (let instructionIndex = 0; instructionIndex < instructionCount; instructionIndex++) {
     let instruction = generateInstruction(instructionIndex);
     exercise.instructions.push(instruction);
   }
@@ -131,12 +152,9 @@ function generateInstruction(index) {
   return instruction;
 }
 
-function title2UTitle(title) {
-  return title.replace(/\s+/g, '_').toLowerCase();
-}
-
 module.exports = {
-  generateUser: generateUser,
-  generateCourse: generateCourse,
-  generateRequest: generateRequest
+  generateUser,
+  generateCourse,
+  generateRequest,
+  generateAchievement
 };
